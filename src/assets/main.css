@@ -2,10 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-} */
+#app {
+  @apply bg-gray-900;
+  @apply h-screen;
+  @apply text-yellow-400;
+}
