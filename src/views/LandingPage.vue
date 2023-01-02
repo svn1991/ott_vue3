@@ -10,10 +10,13 @@ getAllShows();
 </script>
 <template>
   <div v-if="showsInfo.error">Please contact adminstrator</div>
-  <div v-else-if="showsInfo.shows.length === 0">Loading...</div>
+  <div v-else-if="Object.keys(showsInfo.shows).length === 0">Loading...</div>
   <div v-else>
-    <div>
-      <ShowCarousel :shows="showsInfo.shows" />
+    <div v-for="(showsId, genre) in showsInfo.genres" :key="genre" class="py-5">
+      <h1 class="font-bold text-3xl pt-5 pb-5 text-white">{{ genre }}</h1>
+      <div>
+        <ShowCarousel :shows="showsId.map((id) => showsInfo.shows[id])" />
+      </div>
     </div>
   </div>
 </template>

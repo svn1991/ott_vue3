@@ -9,7 +9,7 @@ import FooterBar from "./views/FooterBar.vue";
     <header class="border-b-2 border-yellow-300">
       <HeaderBar />
     </header>
-    <section class="wrapper">
+    <section class="wrapper px-10">
       <RouterView />
       <!-- <nav>
           <RouterLink to="/"></RouterLink>

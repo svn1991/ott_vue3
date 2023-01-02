@@ -7,7 +7,12 @@ const props = defineProps<{
 
 <template>
   <span>
-    <div><img :src="props.show.image" alt="props.show.name" /></div>
-    <div>{{ props.show.name }}</div>
+    <div>
+      <img
+        class="h-52 object-cover"
+        :src="props.show.image"
+        alt="props.show.name"
+      />
+    </div>
   </span>
 </template>

@@ -4,16 +4,25 @@ import { defineStore } from "pinia";
 
 import type { ShowResponseConfig, ShowConfig } from "@/instances";
 
+interface GenreConfig {
+  [key: string]: Array<number>;
+}
+interface ShowsConfig {
+  [key: number]: ShowConfig;
+}
+
 interface ShowStoreConfig {
-  shows: ShowConfig[];
+  shows: ShowsConfig;
   error: string;
+  genres: GenreConfig;
 }
 
 const BASE_PATH: string = "https://api.tvmaze.com/shows";
 
 export const showsStore = defineStore("shows", () => {
   const showsInfo: ShowStoreConfig = reactive({
-    shows: [],
+    shows: {},
+    genres: {},
     error: "",
   });
 
@@ -22,8 +31,23 @@ export const showsStore = defineStore("shows", () => {
       .get(BASE_PATH)
       .then((response) => {
         const data = response.data;
-        const showsList = data.map((show: ShowResponseConfig): ShowConfig => {
-          return {
+        data.sort(
+          (a: ShowResponseConfig, b: ShowResponseConfig) =>
+            b.rating.average - a.rating.average
+        );
+        const genreShowMap: GenreConfig = {};
+        const showsInfoMap: ShowsConfig = {};
+        const idsOrganized = new Set();
+        data.forEach((show: ShowResponseConfig) => {
+          for (const genre of show.genres) {
+            if (!genreShowMap[genre]) genreShowMap[genre] = [];
+            if (genreShowMap[genre].length > 25) continue;
+            if (!idsOrganized.has(show.id)) {
+              genreShowMap[genre].push(show.id);
+              idsOrganized.add(show.id);
+            }
+          }
+          showsInfoMap[show.id] = {
             averageRuntime: show.averageRuntime,
             genres: show.genres,
             id: show.id,
@@ -35,11 +59,21 @@ export const showsStore = defineStore("shows", () => {
             summary: show.summary,
           };
         });
-        showsInfo.shows = showsList;
+
+        for (const genre in genreShowMap) {
+          if (genreShowMap[genre].length < 8) {
+            delete genreShowMap[genre];
+          }
+        }
+
+        showsInfo.shows = showsInfoMap;
+        showsInfo.genres = genreShowMap;
         showsInfo.error = "";
+        console.log(showsInfo);
       })
       .catch((error) => {
-        showsInfo.shows = [];
+        showsInfo.shows = {};
+        showsInfo.genres = {};
         showsInfo.error = error;
       });
   };

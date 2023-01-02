@@ -1,28 +1,38 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Carousel, Pagination, Slide, Navigation } from "vue3-carousel";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import ShowCard from "./ShowCard.vue";
 import type { ShowConfig } from "@/instances";
 
 export default defineComponent({
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: "Autoplay",
+  name: "ShowCarousel",
   props: {
     shows: Array<ShowConfig>,
   },
   components: {
     Carousel,
     Slide,
-    Pagination,
     Navigation,
     ShowCard,
   },
+  data: () => ({
+    // carousel settings
+    settings: {
+      itemsToShow: 1,
+      snapAlign: "center",
+    },
+  }),
 });
 </script>
 
 <template>
-  <Carousel :itemsToShow="6" :wrapAround="true" :transition="500">
+  <Carousel
+    :itemsToShow="6.95"
+    :wrapAround="false"
+    :itemsToScroll="5"
+    :transition="500"
+  >
     <Slide v-for="show in shows" :key="show.id">
       <div class="carousel__item">
         <ShowCard :show="show"></ShowCard>
@@ -30,18 +40,22 @@ export default defineComponent({
     </Slide>
     <template #addons>
       <Navigation />
-      <Pagination />
     </template>
   </Carousel>
 </template>
 
-<style scoped>
+<style>
 .carousel__slide {
-  padding: 5px;
+  justify-content: flex-start;
+}
+
+.carousel__item {
+  border: 2px solid;
 }
 
 .carousel__viewport {
   perspective: 2000px;
+  overflow: visible;
 }
 
 .carousel__track {
@@ -52,27 +66,21 @@ export default defineComponent({
   transition: 0.5s;
 }
 
-.carousel__slide {
-  opacity: 0.9;
-  transform: rotateY(-20deg) scale(0.9);
+.carousel__prev,
+.carousel__next {
+  color: white;
+  height: 100%;
+  width: 75px;
+  background-color: #7e7e7eb8 !important;
+  font-size: xxx-large;
+  position: absolute;
 }
 
-.carousel__slide--active ~ .carousel__slide {
-  transform: rotateY(20deg) scale(0.9);
+.carousel__prev {
+  left: -50px;
 }
 
-.carousel__slide--prev {
-  opacity: 1;
-  transform: rotateY(-10deg) scale(0.95);
-}
-
-.carousel__slide--next {
-  opacity: 1;
-  transform: rotateY(10deg) scale(0.95);
-}
-
-.carousel__slide--active {
-  opacity: 1;
-  transform: rotateY(0) scale(1.1);
+.carousel__next {
+  right: -50px;
 }
 </style>
