@@ -2,10 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+#app {
+  @apply bg-gray-900;
+  @apply min-h-screen;
+  @apply text-yellow-400;
+  @apply font-sans;
+}
 
-  font-weight: normal;
-} */
+.carousel__prev:hover:not(.carousel__prev--disabled:hover),
+.carousel__next:hover:not(.carousel__next--disabled:hover) {
+  @apply text-teal-400;
+  @apply bg-yellow-400 !important;
+  @apply bg-opacity-50;
+}
