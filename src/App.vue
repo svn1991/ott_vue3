@@ -1,6 +1,5 @@
 <script setup lang="ts">
 // import { RouterLink, RouterView } from "vue-router";
-
 import HeaderBar from "./views/HeaderBar.vue";
 import FooterBar from "./views/FooterBar.vue";
 </script>

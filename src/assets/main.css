@@ -4,6 +4,6 @@
 
 #app {
   @apply bg-gray-900;
-  @apply h-screen;
+  @apply min-h-screen;
   @apply text-yellow-400;
 }
