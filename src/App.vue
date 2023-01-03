@@ -2,6 +2,13 @@
 // import { RouterLink, RouterView } from "vue-router";
 import HeaderBar from "./views/HeaderBar.vue";
 import FooterBar from "./views/FooterBar.vue";
+import ShowInformationModal from "./components/ShowInformationModal.vue";
+
+import { storeToRefs } from "pinia";
+import { showsStore } from "@/stores/shows";
+
+const store = showsStore();
+const { showsInfo } = storeToRefs(store);
 </script>
 
 <template>
@@ -11,6 +18,10 @@ import FooterBar from "./views/FooterBar.vue";
     </header>
     <section class="wrapper px-10">
       <RouterView />
+      <ShowInformationModal
+        v-if="showsInfo.showClicked"
+        :show="showsInfo.showClicked"
+      />
       <!-- <nav>
           <RouterLink to="/"></RouterLink>
           <RouterLink to="/about">About</RouterLink>
