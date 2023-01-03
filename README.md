@@ -10,6 +10,13 @@ Purpose: To get familiar with Vue3, Typescript and other technologies
 - `npm run install`
 - `npm run dev`
 
+## TODO
+
+- add search show functionality
+- add unit test cases and coverage stats
+- fix build to deploy on guthub pages
+- work on styling the website
+
 ## Technology Stack
 
 - Main App:
