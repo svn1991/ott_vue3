@@ -4,6 +4,14 @@ A fun project creating an OTT platform displaying tv shows and its information w
 
 Purpose: To get familiar with Vue3, Typescript and other technologies
 
+## Launch
+
+- Clone the repository
+- `npm run install`
+- `npm run dev`
+
+Demo: 
+
 ## Technology Stack
 
 - Main App:
@@ -19,3 +27,9 @@ Purpose: To get familiar with Vue3, Typescript and other technologies
 - Testing: 3
   - Vite
   - Playwright
+
+## References
+
+- Search Icon: https://icons8.com/icons/set/search
+- TV show carousel: https://ismail9k.github.io/vue3-carousel/
+- Vue3 Pop up Modal: https://iknowthatnow.com/2022/05/02/popup-modal-component-in-vue-3/
