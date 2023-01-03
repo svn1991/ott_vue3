@@ -10,8 +10,6 @@ Purpose: To get familiar with Vue3, Typescript and other technologies
 - `npm run install`
 - `npm run dev`
 
-Demo: https://svn1991.github.io/ott_vue3/
-
 ## Technology Stack
 
 - Main App:
