@@ -15,6 +15,7 @@ interface ShowStoreConfig {
   shows: ShowsConfig;
   error: string;
   genres: GenreConfig;
+  showClicked: ShowConfig | null;
 }
 
 const BASE_PATH: string = "https://api.tvmaze.com/shows";
@@ -24,7 +25,12 @@ export const showsStore = defineStore("shows", () => {
     shows: {},
     genres: {},
     error: "",
+    showClicked: null,
   });
+
+  const updateShowClicked = (show: ShowConfig | null = null) => {
+    showsInfo.showClicked = show;
+  };
 
   const getAllShows = async () => {
     await axios
@@ -78,5 +84,5 @@ export const showsStore = defineStore("shows", () => {
       });
   };
 
-  return { showsInfo, getAllShows };
+  return { showsInfo, getAllShows, updateShowClicked };
 });
