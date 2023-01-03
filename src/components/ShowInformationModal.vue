@@ -27,7 +27,8 @@ const closeModal = () => {
       @click="closeModal"
     ></div>
     <div
-      class="bg-white rounded-lg text-lg pt-6 shadow-lg fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30"
+      class="bg-white rounded-lg text-lg pt-6 shadow-lg fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 overflow-y-auto"
+      :class="['modal-popup']"
     >
       <h2 class="text-2xl pb-5 font-bold text-teal-400 px-6">
         {{ props.show.name }}
@@ -63,4 +64,8 @@ const closeModal = () => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.modal-popup {
+  max-height: 60vh;
+}
+</style>
