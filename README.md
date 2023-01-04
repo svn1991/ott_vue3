@@ -10,12 +10,20 @@ Purpose: To get familiar with Vue3, Typescript and other technologies
 - `npm run install`
 - `npm run dev`
 
+## Current Features
+
+- display shows by genre
+  - shows per genre limited to max 25
+  - genre only displayed if minimum of 8 shows exist
+- display show information when show is clicked
+- search bar and results dropdown
+  
 ## TODO
 
-- add search show functionality
 - add unit test cases and coverage stats
-- fix build to deploy on guthub pages
-- work on styling the website
+- fix build to deploy on github pages
+- work on styling the website and better show/hide toggling
+- standardize global variable usage
 
 ## Technology Stack
 
