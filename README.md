@@ -6,9 +6,13 @@ Purpose: To get familiar with Vue3, Typescript and other technologies
 
 ## Launch
 
+#### Local:
 - Clone the repository
 - `npm run install`
 - `npm run dev`
+
+#### Demo: 
+https://svn1991.github.io/ott_vue3/
 
 ## Current Features
 
