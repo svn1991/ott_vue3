@@ -9,6 +9,7 @@ interface ShowStoreConfig {
   error: string;
   searchResults: ShowConfig[];
   searchQuery: string;
+  showResults: boolean;
 }
 
 export const searchStore = defineStore("search", () => {
@@ -16,6 +17,7 @@ export const searchStore = defineStore("search", () => {
     error: "",
     searchResults: [],
     searchQuery: "",
+    showResults: false,
   });
 
   const getSearchResults = async (query: string) => {
@@ -25,15 +27,20 @@ export const searchStore = defineStore("search", () => {
       const { searchResults, error } = await searchShows(query);
       searchInfo.searchResults = searchResults;
       searchInfo.error = error;
-      console.log(searchResults, error);
     }
+    searchInfo.showResults = !searchInfo.error;
   };
 
   const resetSearch = () => {
     searchInfo.searchQuery = "";
     searchInfo.searchResults = [];
     searchInfo.error = "";
+    searchInfo.showResults = false;
   };
 
-  return { searchInfo, getSearchResults, resetSearch };
+  const toggleSearch = () => {
+    searchInfo.showResults = !searchInfo.showResults;
+  }
+
+  return { searchInfo, getSearchResults, resetSearch, toggleSearch };
 });

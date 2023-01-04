@@ -34,14 +34,18 @@ const closeModal = () => {
         {{ props.show.name }}
       </h2>
       <div class="px-6 pb-6 flex">
-        <div class="float-left w-3/12">
+        <div class="float-left w-3/12 min-w-[150px]">
           <img
+            v-if="props.show.image"
             class="h-52 object-cover"
             :src="props.show.image"
             alt="props.show.name"
           />
+          <div v-else class="h-52 bg-teal-400 flex justify-center items-center">
+            <img class="h-10 w-10" src="@/assets/images/broadcast.png" />
+          </div>
         </div>
-        <div class="float-left w-9/12 text-base text-gray-500">
+        <div class="float-left pl-1 w-9/12 text-base text-gray-500">
           <div>
             <span v-html="props.show.summary" />
           </div>
@@ -54,7 +58,7 @@ const closeModal = () => {
       </div>
       <div class="px-6 py-3 rounded-b-lg flex justify-center">
         <button
-          class="bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-6 rounded"
+          class="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-6 rounded"
           @click="closeModal"
         >
           Close
