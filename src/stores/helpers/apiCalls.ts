@@ -8,6 +8,7 @@ import type {
 
 const BASE_PATH: string = "https://api.tvmaze.com";
 const SHOWS_PATH: string = `${BASE_PATH}/shows`;
+const SEARCH_PATH: string = `${BASE_PATH}/search/shows`;
 
 interface AllShowsReturnConfig {
   shows: StoreShowsConfig;
@@ -15,6 +16,37 @@ interface AllShowsReturnConfig {
   genres: StoreGenreConfig;
 }
 
+interface SearchResultsConfig {
+  searchResults: ShowConfig[];
+  error: string;
+}
+
+export const searchShows = async (
+  query: string
+): Promise<SearchResultsConfig> => {
+  return await axios
+    .get(`${SEARCH_PATH}?q=${query}`)
+    .then((response) => {
+      const data = response.data;
+      const searchResults = data.map(({ show }) => {
+        return {
+          averageRuntime: show.averageRuntime,
+          genres: show.genres,
+          id: show.id,
+          image: show.image?.medium,
+          language: show.language,
+          name: show.name,
+          rating: show.rating.average,
+          weight: show.weight,
+          summary: show.summary,
+        };
+      });
+      return { searchResults, error: "" };
+    })
+    .catch((error) => {
+      return { searchResults: [], error };
+    });
+};
 
 export const getShows = async (): Promise<AllShowsReturnConfig> => {
   return await axios
