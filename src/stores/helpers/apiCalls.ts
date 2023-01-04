@@ -21,6 +21,10 @@ interface SearchResultsConfig {
   error: string;
 }
 
+interface SearchResponseConfig {
+  show: ShowResponseConfig;
+}
+
 export const searchShows = async (
   query: string
 ): Promise<SearchResultsConfig> => {
@@ -28,7 +32,7 @@ export const searchShows = async (
     .get(`${SEARCH_PATH}?q=${query}`)
     .then((response) => {
       const data = response.data;
-      const searchResults = data.map(({ show }) => {
+      const searchResults = data.map(({ show }: SearchResponseConfig) => {
         return {
           averageRuntime: show.averageRuntime,
           genres: show.genres,
