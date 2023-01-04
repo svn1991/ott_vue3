@@ -25,3 +25,10 @@ export interface ShowConfig {
   weight: number;
   summary: string;
 }
+
+export interface StoreGenreConfig {
+  [key: string]: Array<number>;
+}
+export interface StoreShowsConfig {
+  [key: number]: ShowConfig;
+}

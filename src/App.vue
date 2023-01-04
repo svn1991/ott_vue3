@@ -7,6 +7,8 @@ import ShowInformationModal from "./components/ShowInformationModal.vue";
 import { storeToRefs } from "pinia";
 import { showsStore } from "@/stores/shows";
 
+document.body.style.overflowX = "hidden";
+
 const store = showsStore();
 const { showsInfo } = storeToRefs(store);
 </script>
@@ -27,7 +29,7 @@ const { showsInfo } = storeToRefs(store);
           <RouterLink to="/about">About</RouterLink>
         </nav> -->
     </section>
-    <footer><FooterBar /></footer>
+    <footer class="border-t-2 border-yellow-300 mt-10"><FooterBar /></footer>
   </div>
 </template>
 
