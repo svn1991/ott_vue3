@@ -50,7 +50,6 @@ export default defineComponent({
 }
 
 .carousel__item {
-  border: 2px solid;
 }
 
 .carousel__viewport {
