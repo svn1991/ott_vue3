@@ -14,8 +14,6 @@ interface ShowStoreConfig {
   error: string;
   genres: StoreGenreConfig;
   showClicked: ShowConfig | null;
-  searchResults: ShowConfig[];
-  searchQuery: string;
 }
 
 export const showsStore = defineStore("shows", () => {
@@ -24,8 +22,6 @@ export const showsStore = defineStore("shows", () => {
     genres: {},
     error: "",
     showClicked: null,
-    searchResults: [],
-    searchQuery: "",
   });
 
   const updateShowClicked = (show: ShowConfig | null = null) => {

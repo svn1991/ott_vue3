@@ -16,7 +16,7 @@ const { showsInfo } = storeToRefs(store);
 <template>
   <div class="container">
     <header class="border-b-2 border-yellow-300">
-      <HeaderBar />
+      <HeaderBar data-testid="headerBar" />
     </header>
     <section class="wrapper px-10">
       <RouterView />
@@ -29,7 +29,9 @@ const { showsInfo } = storeToRefs(store);
           <RouterLink to="/about">About</RouterLink>
         </nav> -->
     </section>
-    <footer class="border-t-2 border-yellow-300 mt-10"><FooterBar /></footer>
+    <footer class="border-t-2 border-yellow-300 mt-10">
+      <FooterBar data-testid="footerBar" />
+    </footer>
   </div>
 </template>
 
